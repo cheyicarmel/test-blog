@@ -10,10 +10,7 @@ Route::get('/', function () {
 });
 
 // Consulter les articles (public aussi)
-Route::resource('articles', ArticleController::class)
-    ->only(['index', 'show']);
-
-
+Route::resource('articles', ArticleController::class);
 
 
 Route::middleware('auth')->group(function () {
@@ -21,10 +18,6 @@ Route::middleware('auth')->group(function () {
     // Liste des articles de l'utilisateur connecté
     Route::get('/mes-articles', [ArticleController::class, 'myArticles'])
         ->name('articles.my-articles');
-
-    // Routes du crud des articles
-    Route::resource('articles', ArticleController::class)
-        ->except(['index', 'show']);
 
     // Pprofil
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

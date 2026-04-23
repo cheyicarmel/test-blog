@@ -1,65 +1,49 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Nouvel article
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Nouvel article') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <div class="max-w-xl">
 
-                <form action="{{ route('articles.store') }}" method="POST">
-                    {{-- @csrf génère un token caché dans le formulaire --}}
-                    {{-- Laravel le vérifie à chaque POST pour bloquer les attaques CSRF --}}
-                    @csrf
+                    <h2 class="text-lg font-medium text-gray-900 mb-1">Rédiger un article</h2>
+                    <p class="text-sm text-gray-600 mb-6">Remplissez les champs ci-dessous puis publiez.</p>
 
-                    <div class="mb-6">
-                        <label for="title"
-                               class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                            Titre
-                        </label>
-                        {{-- old('title') : si validation échoue, réaffiche ce que l'user avait tapé --}}
-                        <input type="text" id="title" name="title"
-                               value="{{ old('title') }}"
-                               class="w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700
-                                      dark:text-white rounded-md shadow-sm
-                                      focus:ring-indigo-500 focus:border-indigo-500"
-                               required>
-                        {{-- @error affiche le message d'erreur de validation pour ce champ --}}
-                        @error('title')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
+                    <form action="{{ route('articles.store') }}" method="POST">
+                        @csrf
 
-                    <div class="mb-6">
-                        <label for="body"
-                               class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                            Contenu
-                        </label>
-                        <textarea id="body" name="body" rows="12"
-                                  class="w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700
-                                         dark:text-white rounded-md shadow-sm
-                                         focus:ring-indigo-500 focus:border-indigo-500"
-                                  required>{{ old('body') }}</textarea>
-                        @error('body')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
+                        <div class="mb-4">
+                            <x-input-label for="title" :value="__('Titre')" />
+                            <x-text-input id="title" name="title" type="text"
+                                          class="mt-1 block w-full"
+                                          :value="old('title')"
+                                          placeholder="Titre de votre article"
+                                          required autofocus />
+                            <x-input-error :messages="$errors->get('title')" class="mt-2" />
+                        </div>
 
-                    <div class="flex items-center gap-4">
-                        <button type="submit"
-                                class="bg-indigo-600 text-white px-6 py-2 rounded-md
-                                       hover:bg-indigo-700 transition">
-                            Publier
-                        </button>
-                        <a href="{{ route('articles.my-articles') }}"
-                           class="text-gray-600 dark:text-gray-400 hover:underline text-sm">
-                            Annuler
-                        </a>
-                    </div>
-                </form>
+                        <div class="mb-6">
+                            <x-input-label for="body" :value="__('Contenu')" />
+                            <textarea id="body" name="body" rows="10"
+                                      placeholder="Rédigez votre article..."
+                                      class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm">{{ old('body') }}</textarea>
+                            <x-input-error :messages="$errors->get('body')" class="mt-2" />
+                        </div>
 
+                        <div class="flex items-center gap-4">
+                            <a href="{{ route('articles.my-articles') }}"
+                               class="text-sm text-gray-600 hover:text-gray-900 transition">
+                                Annuler
+                            </a>
+                            <x-primary-button>{{ __('Publier') }}</x-primary-button>
+                        </div>
+                    </form>
+
+                </div>
             </div>
         </div>
     </div>

@@ -7,9 +7,16 @@ use App\Policies\ArticlePolicy;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controller as BaseController;
 
-class ArticleController extends Controller
+class ArticleController extends BaseController
 {
+    // 
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     // Affichage de tous les articles
     public function index()
     {
