@@ -1,17 +1,32 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// Acceuil : Liste des articles (public)
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('articles.index');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Consulter les articles (public aussi)
+Route::resource('articles', ArticleController::class)
+    ->only(['index', 'show']);
+
+
+
 
 Route::middleware('auth')->group(function () {
+
+    // Liste des articles de l'utilisateur connecté
+    Route::get('/mes-articles', [ArticleController::class, 'myArticles'])
+        ->name('articles.my-articles');
+
+    // Routes du crud des articles
+    Route::resource('articles', ArticleController::class)
+        ->except(['index', 'show']);
+
+    // Pprofil
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
