@@ -12,7 +12,6 @@ Route::get('/', function () {
 // Consulter les articles (public aussi)
 Route::resource('articles', ArticleController::class);
 
-
 Route::middleware('auth')->group(function () {
 
     // Liste des articles de l'utilisateur connecté

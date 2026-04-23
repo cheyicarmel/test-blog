@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
+                <div class="">
 
                     <h2 class="text-lg font-medium text-gray-900 mb-1">Modifier l'article</h2>
                     <p class="text-sm text-gray-600 mb-6">Modifiez les champs puis enregistrez.</p>
@@ -33,12 +33,12 @@
                             <x-input-error :messages="$errors->get('body')" class="mt-2" />
                         </div>
 
-                        <div class="flex items-center gap-4">
-                            <x-primary-button>{{ __('Enregistrer') }}</x-primary-button>
+                        <div class="justify-end flex items-center gap-4">
                             <a href="{{ route('articles.my-articles') }}"
                                class="text-sm text-gray-600 hover:text-gray-900 transition">
                                 Annuler
                             </a>
+                            <x-primary-button>{{ __('Enregistrer') }}</x-primary-button>
                         </div>
                     </form>
 

@@ -23,7 +23,6 @@
                 </div>
             </div>
 
-            <!-- Partie droite : dropdown si connecté, sinon login/register -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 @auth
                     {{-- Dropdown visible uniquement si connecté --}}
@@ -66,7 +65,6 @@
                 @endauth
             </div>
 
-            <!-- Bouton hamburger (mobile) -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -92,7 +90,6 @@
             @endauth
         </div>
 
-        <!-- Options utilisateur en bas du menu responsive -->
         @auth
             <div class="pt-4 pb-1 border-t border-gray-200">
                 <div class="px-4">

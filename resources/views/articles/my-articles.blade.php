@@ -12,7 +12,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
             @session('success')
                 <div class="p-4 bg-green-50 border border-green-200 text-green-700 text-sm sm:rounded-lg">
@@ -61,13 +61,6 @@
                     </div>
                 </div>
             @empty
-                <!-- <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                    <p class="text-gray-500 text-sm mb-4">Vous n'avez pas encore écrit d'article.</p>
-                    <a href="{{ route('articles.create') }}"
-                       class="inline-flex items-center px-4 py-2 bg-gray-800 text-white text-xs font-semibold rounded-md uppercase tracking-widest hover:bg-gray-700 transition">
-                        Écrire mon premier article
-                    </a>
-                </div> -->
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                     <p class="text-gray-500 text-sm">Vous n'avez pas encore écrit d'article.</p>
                 </div>

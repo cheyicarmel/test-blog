@@ -17,7 +17,7 @@
                     @endif
                 </p>
 
-                <div class="text-gray-700 text-sm leading-relaxed whitespace-pre-wrap">
+                <div class="text-gray-700 text-sm leading-relaxed whitespace-pre-wrap break-words overflow-hidden">
                     {{ $article->body }}
                 </div>
 
